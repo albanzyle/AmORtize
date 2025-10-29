@@ -1,0 +1,1100 @@
+\documentclass[aspectratio=169]{beamer}
+\usepackage{tikz}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{color}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb}
+
+\usetheme{Madrid}
+\usecolortheme{default}
+
+% Define checkmarks and unicode symbols
+\newcommand{\checkmark}{\ding{51}}
+\newcommand{\xmark}{\ding{55}}
+\usepackage{pifont}
+
+% Custom colors
+\definecolor{aiblue}{RGB}{102, 126, 234}
+\definecolor{aigreen}{RGB}{40, 167, 69}
+\definecolor{aiorange}{RGB}{255, 159, 64}
+\definecolor{aired}{RGB}{220, 53, 69}
+
+\setbeamercolor{structure}{fg=aiblue}
+\setbeamercolor{frametitle}{bg=aiblue,fg=white}
+
+\title[Optimizimi me AI]{OptimizOR.ai: Zgjidhës Optimizimi i Fuqizuar nga AI}
+\subtitle{Duke Marrë Vendime Komplekse në Milisekonda}
+\author{Alban Zyle}
+\date{\today}
+
+\begin{document}
+
+% Title Slide
+\begin{frame}
+\titlepage
+\begin{center}
+\large
+\textcolor{aiblue}{\textbf{Duke Zgjidhur Probleme të Vështira, Shpejt si Vetëtima}}
+\end{center}
+\end{frame}
+
+% ============================================================================
+% SEKSIONI 1: PROBLEMI - Gjuhë e Përditshme
+% ============================================================================
+
+\section{Sfida}
+
+\begin{frame}{Imagjinoni Këtë Skenar të Thjeshtë...}
+\begin{center}
+\begin{tikzpicture}[scale=0.8]
+    % Draw backpack
+    \draw[thick, fill=aiblue!20] (0,0) -- (2,0) -- (2.5,3) -- (1.25,4) -- (0,3) -- cycle;
+    \node at (1.25,1.5) {\Large \textbf{20 kg}};
+    \node at (1.25,0.7) {\small kapacitet};
+    
+    % Draw items
+    \begin{scope}[shift={(4,0)}]
+        % Gold bar
+        \draw[fill=yellow!70, thick] (0,2.5) rectangle (1.5,3.5);
+        \node at (0.75,3) {\small Ar};
+        \node at (0.75,2.3) {\tiny 15kg};
+        \node[color=aigreen] at (0.75,2) {\small \$5,000};
+        
+        % Laptop
+        \draw[fill=gray!50, thick] (2,2.5) rectangle (3.5,3.5);
+        \node at (2.75,3) {\small Laptop};
+        \node at (2.75,2.3) {\tiny 2kg};
+        \node[color=aigreen] at (2.75,2) {\small \$1,000};
+        
+        % Diamond
+        \draw[fill=cyan!50, thick] (4,2.5) rectangle (5.5,3.5);
+        \node at (4.75,3) {\small Diamant};
+        \node at (4.75,2.3) {\tiny 1kg};
+        \node[color=aigreen] at (4.75,2) {\small \$8,000};
+        
+        % Camera
+        \draw[fill=orange!50, thick] (0,0.5) rectangle (1.5,1.5);
+        \node at (0.75,1) {\small Kamerë};
+        \node at (0.75,0.3) {\tiny 3kg};
+        \node[color=aigreen] at (0.75,0) {\small \$1,500};
+        
+        % Books
+        \draw[fill=red!50, thick] (2,0.5) rectangle (3.5,1.5);
+        \node at (2.75,1) {\small Libra};
+        \node at (2.75,0.3) {\tiny 20kg};
+        \node[color=aigreen] at (2.75,0) {\small \$100};
+        
+        % Watch
+        \draw[fill=purple!50, thick] (4,0.5) rectangle (5.5,1.5);
+        \node at (4.75,1) {\small Orë};
+        \node at (4.75,0.3) {\tiny 0.5kg};
+        \node[color=aigreen] at (4.75,0) {\small \$3,000};
+    \end{scope}
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.5cm}
+\begin{center}
+\Large \textcolor{aiblue}{\textbf{Cilat artikuj i vendosni për të maksimizuar vlerën?}}
+\end{center}
+\end{frame}
+
+\begin{frame}{Për Njerëzit: E Lehtë!}
+\begin{columns}
+\column{0.5\textwidth}
+\textbf{Truri Ynë Shpejt Kupton:}
+\begin{itemize}
+    \item \checkmark{} Diamant: I vogël, shumë i vlefshëm (1kg = \$8,000)
+    \item \checkmark{} Orë: Shumë e vogël, vlerë e mirë (0.5kg = \$3,000)
+    \item \checkmark{} Ar: Vlerë e mirë (15kg = \$5,000)
+    \item \checkmark{} Laptop: I lehtë, vlerë e mirë (2kg = \$1,000)
+    \item \xmark{} Libra: Të rëndë, vlerë e ulët (hiqni!)
+\end{itemize}
+
+\vspace{0.3cm}
+\textcolor{aigreen}{\textbf{Totali: \$17,000 në 18.5kg}}
+
+\column{0.5\textwidth}
+\begin{center}
+\begin{tikzpicture}[scale=0.7]
+    \draw[thick, fill=aigreen!30] (0,0) rectangle (3,4);
+    \node at (1.5,3.5) {\small Diamant};
+    \node at (1.5,2.8) {\small Orë};
+    \node at (1.5,2.1) {\small Ar};
+    \node at (1.5,1.4) {\small Laptop};
+    \node[color=aigreen] at (1.5,0.5) {\Large \textbf{\$17k}};
+    
+    \node at (1.5,-0.5) {\small 18.5kg / 20kg};
+\end{tikzpicture}
+\end{center}
+\end{columns}
+
+\vspace{0.5cm}
+\begin{center}
+\textcolor{gray}{\textit{Ne përdorim intuiten, gjykim të shëndoshë, vlerësime të shpejta...}}
+\end{center}
+\end{frame}
+
+\begin{frame}{Për Kompjuterët: Shumë e Vështirë!}
+\textbf{Pse kompjuterët e kane te veshire:}
+
+\begin{columns}
+\column{0.6\textwidth}
+\begin{itemize}
+    \item Duhet të kontrollojë \textbf{TË GJITHA kombinimet e mundshme}
+    \item 6 artikuj = 64 kombinime
+    \item 20 artikuj = \textbf{1 MILION} kombinime
+    \item 50 artikuj = \textbf{1 KUADRILION} kombinime!
+\end{itemize}
+
+\vspace{0.3cm}
+\begin{block}{Problemi Shpërthen!}
+Çdo artikull i ri \textbf{dyfishon} punën.\\
+Kjo quhet \textbf{rritje eksponenciale}.
+\end{block}
+
+\column{0.4\textwidth}
+\begin{tikzpicture}[scale=0.8]
+    \draw[->] (0,0) -- (4,0) node[right] {\tiny Artikuj};
+    \draw[->] (0,0) -- (0,4) node[above] {\tiny Kohë};
+    
+    % Exponential curve
+    \draw[thick, color=aired, domain=0:3.5] plot (\x, {0.1*exp(\x)});
+    
+    \node[color=aired] at (2,3.5) {\textbf{SHPËRTHEN!}};
+    \node at (2,-0.5) {\tiny Metodat Tradicionale};
+\end{tikzpicture}
+\end{columns}
+
+\vspace{0.3cm}
+\begin{center}
+\textcolor{aired}{\Large \textbf{100 artikuj? Mund të marrë VITE për ta zgjidhur!}}
+\end{center}
+\end{frame}
+
+% ============================================================================
+% SEKSIONI 2: BOTA REALE - Pse Kjo Ka Rëndësi
+% ============================================================================
+
+\section{Ndikimi në Botën Reale}
+
+\begin{frame}{Ky Është Vetëm NJË Problem...}
+\begin{center}
+\textbf{Problemi i "Çantës" shfaqet KUDO në biznes:}
+\end{center}
+
+\vspace{0.5cm}
+
+\begin{columns}
+\column{0.5\textwidth}
+\textbf{Logjistikë \& Transport}
+\begin{itemize}
+    \item Ngarkim optimal i kamionëve
+    \item Paketim kontejnerësh
+    \item Planifikim dërgesash
+\end{itemize}
+
+\vspace{0.3cm}
+\textbf{Financa \& Investime}
+\begin{itemize}
+    \item Ndërtim portofolesh
+    \item Alokimi i buxhetit
+    \item Menaxhim risku vs kthimi
+\end{itemize}
+
+\column{0.5\textwidth}
+\textbf{Prodhim}
+\begin{itemize}
+    \item Planifikim prodhimi
+    \item Alokimi i burimeve
+    \item Optimizim zinxhiri furnizimi
+\end{itemize}
+
+\vspace{0.3cm}
+\textbf{Cloud Computing}
+\begin{itemize}
+    \item Alokimi i serverëve
+    \item Balancim ngarkesash
+    \item Minimizim kostosh
+\end{itemize}
+\end{columns}
+
+\vspace{0.5cm}
+\begin{center}
+\large \textcolor{aiblue}{\textbf{Miliarda dollarë varen nga zgjidhja efikase e këtyre!}}
+\end{center}
+\end{frame}
+
+\begin{frame}{Tregu Aktual: CPLEX \& Zgjidhësit Komercialë}
+\begin{columns}
+\column{0.6\textwidth}
+\textbf{IBM CPLEX Optimizer:}
+\begin{itemize}
+    \item Standard i industrisë
+    \item \textcolor{aired}{\textbf{Licensim jashtëzakonisht i shtrenjtë}}
+    \item \$10,000 - \$100,000+ në vit
+    \item I ngadaltë për probleme të mëdha
+    \item Kompleks për t'u përdorur (kërkon ekspertë)
+\end{itemize}
+
+\vspace{0.3cm}
+\textbf{Madhësia e Tregut:}
+\begin{itemize}
+    \item \$2+ miliardë në vit
+    \item Rritje 15\% në vit
+    \item Dominohet nga pak lojtarë
+\end{itemize}
+
+\column{0.4\textwidth}
+\begin{center}
+\begin{tikzpicture}[scale=0.9]
+    % Money bag
+    \draw[thick, fill=yellow!50] (1,0) circle (1.5);
+    \node at (1,0.3) {\Huge \$};
+    \node at (1,-0.8) {\small CPLEX};
+    
+    % Price tag
+    \draw[thick, fill=aired!30] (1,-2) rectangle (3,-2.8);
+    \node at (2,-2.4) {\small \textbf{\$100k/vit}};
+\end{tikzpicture}
+\end{center}
+\end{columns}
+
+\begin{block}{Mundësia}
+\textbf{Çfarë sikur të zgjidhjim 99\% po aq mirë, 100x më shpejt, me 1\% të kostos?}
+\end{block}
+\end{frame}
+
+\begin{frame}{Pse Janë Këto Probleme Kaq të Vështira?}
+\begin{center}
+\textbf{Disa probleme janë thelbësisht të vështira:}
+\end{center}
+
+\vspace{0.3cm}
+
+\begin{columns}
+\column{0.5\textwidth}
+\textbf{Probleme të Lehta:}
+\begin{itemize}
+    \item Renditja e një liste
+    \item Kërkimi në bazë të dhënash
+    \item Kalkulime të thjeshta
+\end{itemize}
+\textcolor{aigreen}{→ Të shpejta, edhe për të dhëna të mëdha}
+
+\vspace{0.5cm}
+\textbf{Probleme të Vështira:}
+\begin{itemize}
+    \item Gjetja e kombinimit më të mirë
+    \item Optimizimi i orareve
+    \item Planifikim rrugësh
+\end{itemize}
+\textcolor{aired}{→ Eksponencialisht të ngadalta!}
+
+\column{0.5\textwidth}
+\begin{tikzpicture}[scale=0.9]
+    \draw[->] (0,0) -- (5,0) node[right] {\tiny Madhësia e Problemit};
+    \draw[->] (0,0) -- (0,4) node[above] {\tiny Kohë};
+    
+    % Linear (easy)
+    \draw[thick, color=aigreen, domain=0:4.5] plot (\x, {0.5*\x});
+    \node[color=aigreen] at (3.5,2.3) {\small Të Lehta};
+    
+    % Exponential (hard)
+    \draw[thick, color=aired, domain=0:3] plot (\x, {0.1*exp(\x)});
+    \node[color=aired] at (2,3.5) {\small Të Vështira};
+    
+    \draw[dashed] (3,0) -- (3,4);
+    \node at (3,-0.3) {\tiny 50 artikuj};
+\end{tikzpicture}
+\end{columns}
+
+\vspace{0.5cm}
+\begin{alertblock}{Lajmi i Keq}
+Kompjuterë më të shpejtë \textbf{NUK ndihmojnë shumë}! 2x kompjuter më i shpejt = zgjidh vetëm NJË artikull më tepër.
+\end{alertblock}
+\end{frame}
+
+% ============================================================================
+% SEKSIONI 3: ZGJIDHJA - Qasja Jonë me AI
+% ============================================================================
+
+\section{Zgjidhja Jonë}
+
+\begin{frame}{Prezantojmë: Optimizimin e Fuqizuar nga AI}
+\begin{center}
+\Large \textbf{Çfarë sikur kompjuterët të mësonin si njerëzit?}
+\end{center}
+
+\vspace{0.5cm}
+
+\begin{columns}
+\column{0.5\textwidth}
+\textbf{Qasja Tradicionale:}
+\begin{itemize}
+    \item Kontrollo çdo kombinim
+    \item Përgjigje perfekte e garantuar
+    \item \textcolor{aired}{Merr përgjithmonë!}
+\end{itemize}
+
+\vspace{0.3cm}
+\begin{tikzpicture}[scale=0.7]
+    \draw[thick, fill=aired!20] (0,0) rectangle (4,2);
+    \node at (2,1.5) {\small Zgjidhës};
+    \node at (2,1) {\small Tradicional};
+    \node at (2,0.3) {\tiny 5 orë};
+    \draw[thick, ->] (4.2,1) -- (5.5,1);
+    \node[color=aigreen] at (7.1,1) {\small 100\% optimal};
+\end{tikzpicture}
+
+\column{0.5\textwidth}
+\textbf{Qasja Jonë me AI:}
+\begin{itemize}
+    \item Mëson modele nga shembuj
+    \item Bën parashikime inteligjente
+    \item \textcolor{aigreen}{Pothuajse i menjëhershëm!}
+\end{itemize}
+
+\vspace{0.3cm}
+\begin{tikzpicture}[scale=0.7]
+    \draw[thick, fill=aigreen!20] (0,0) rectangle (4,2);
+    \node at (2,1.5) {\small Zgjidhës};
+    \node at (2,1) {\small AI};
+    \node at (2,0.3) {\tiny 0.02 sekonda};
+    \draw[thick, ->] (4.2,1) -- (5.5,1);
+    \node[color=aigreen] at (7.2,1) {\small 99.5\% optimal};
+\end{tikzpicture}
+\end{columns}
+
+\vspace{0.5cm}
+\begin{block}{Balanca Magjike}
+\textbf{99.5\% saktësi me 1000x shpejtësi = Perfekt për biznesin!}
+\end{block}
+\end{frame}
+
+\begin{frame}{Si Mëson AI-ja Jonë?}
+\begin{center}
+\textbf{Procesi i Trajnimit (Bëhet Një Herë):}
+\end{center}
+
+\begin{tikzpicture}[scale=0.85]
+    % Step 1
+    \node[draw, fill=aiblue!20, minimum width=3cm, minimum height=1.2cm] at (0,0) (step1) {
+        \begin{tabular}{c}
+        \textbf{1. Gjenero} \\
+        \small 100,000 probleme
+        \end{tabular}
+    };
+    
+    % Step 2
+    \node[draw, fill=aiblue!20, minimum width=3cm, minimum height=1.2cm] at (4.5,0) (step2) {
+        \begin{tabular}{c}
+        \textbf{2. Zgjidh Perfekt} \\
+        \small Gjej përgjigjet optimale
+        \end{tabular}
+    };
+    
+    % Step 3
+    \node[draw, fill=aiblue!20, minimum width=3cm, minimum height=1.2cm] at (9,0) (step3) {
+        \begin{tabular}{c}
+        \textbf{3. Trajno AI-në} \\
+        \small Mëso modelet
+        \end{tabular}
+    };
+    
+    % Arrows
+    \draw[->, thick] (step1) -- (step2);
+    \draw[->, thick] (step2) -- (step3);
+    
+    % Result
+    \node[draw, fill=aigreen!30, minimum width=9cm, minimum height=1.2cm] at (4.5,-2) (result) {
+        \begin{tabular}{c}
+        \textbf{Rezultati: AI inteligjent që zgjidh probleme TË REJA menjëherë!} \\
+        \small (pa kontrolluar çdo kombinim)
+        \end{tabular}
+    };
+    
+    \draw[->, thick, color=aigreen] (step3) -- (result);
+\end{tikzpicture}
+
+\vspace{0.5cm}
+\begin{center}
+\textit{Si të mësosh një fëmijë: trego shumë shembuj, ata mësojnë modelin}
+\end{center}
+\end{frame}
+
+% \begin{frame}{Avantazhi Ynë Teknik}
+% \begin{center}
+% \textbf{Pse Funksionon Qasja Jonë:}
+% \end{center}
+
+% \vspace{0.3cm}
+
+% \begin{columns}
+% \column{0.5\textwidth}
+% \textbf{\checkmark{} Arkitekturë Inteligjente}
+% \begin{itemize}
+%     \item Rrjet neural deep learning
+%     \item Mëson modele vlere artikujsh
+%     \item Adaptohet ndaj problemeve të ndryshme
+% \end{itemize}
+
+% \vspace{0.3cm}
+% \textbf{\checkmark{} Inovacion në Trajnim}
+% \begin{itemize}
+%     \item Madhësi variabile problemesh (10-200 artikuj)
+%     \item Nivele të ndryshme kufizimesh
+%     \item 100,000+ shembuj trajnimi
+% \end{itemize}
+
+% \column{0.5\textwidth}
+% \textbf{\checkmark{} Sigurimi i Cilësisë}
+% \begin{itemize}
+%     \item Rafinim me kërkim lokal
+%     \item Garanci 100\% mundësie
+%     \item $<$1\% konsistent nga optimali
+% \end{itemize}
+
+% \vspace{0.3cm}
+% \textbf{\checkmark{} Gati për Prodhim}
+% \begin{itemize}
+%     \item Trajton 10-200 artikuj
+%     \item Kohë përgjigjeje milisekonda
+%     \item E lehtë për t'u integruar
+% \end{itemize}
+% \end{columns}
+
+% \vspace{0.5cm}
+% \begin{center}
+% \textcolor{aiblue}{\textbf{Metodologji në pritje të patentës duke kombinuar AI + optimizim klasik}}
+% \end{center}
+% \end{frame}
+
+% ============================================================================
+% SEKSIONI 4: REZULTATET - Metrikat e Performancës
+% ============================================================================
+
+\section{Performanca}
+
+% \begin{frame}{Rezultatet Tona: Performancë Mbresëlënëse!}
+% \begin{center}
+% \textbf{Testuar në mijëra probleme reale:}
+% \end{center}
+
+% \vspace{0.3cm}
+
+% \begin{table}
+% \centering
+% \begin{tabular}{|c|c|c|c|}
+% \hline
+% \textbf{Madhësia} & \textbf{AI-ja Jonë} & \textbf{Tradicional} & \textbf{Shpejtësi} \\
+% \hline
+% 10 artikuj & 3 ms & 2 ms & 1x \\
+% \hline
+% 20 artikuj & 6 ms & 10 ms & \textcolor{aigreen}{\textbf{3x më shpejt}} \\
+% \hline
+% 50 artikuj & 15 ms & 60 ms & \textcolor{aigreen}{\textbf{6x më shpejt}} \\
+% \hline
+% 100 artikuj & 40 ms & 5,000 ms & \textcolor{aigreen}{\textbf{100x më shpejt!}} \\
+% \hline
+% 200 artikuj & 100 ms & 300,000 ms & \textcolor{aigreen}{\textbf{3000x më shpejt!!}} \\
+% \hline
+% \end{tabular}
+% \end{table}
+
+% \vspace{0.3cm}
+
+% \begin{columns}
+% \column{0.5\textwidth}
+% \textbf{Saktësia:}
+% \begin{itemize}
+%     \item Hendeku mesatar: \textcolor{aigreen}{\textbf{0.5\%}}
+%     \item Mundësia: \textcolor{aigreen}{\textbf{100\%}}
+%     \item Shpesh gjen optimalin!
+% \end{itemize}
+
+% \column{0.5\textwidth}
+% \textbf{Besueshmëria:}
+% \begin{itemize}
+%     \item Performancë konsistente
+%     \item Asnjë dështim në testime
+%     \item Shkallëzon bukur
+% \end{itemize}
+% \end{columns}
+% \end{frame}
+
+\begin{frame}{Krahasim Vizual: Shpejtësia vs Madhësia}
+\begin{center}
+\begin{tikzpicture}[scale=0.8]
+    \draw[->] (0,0) -- (10,0) node[right] {Numri i Artikujve};
+    \draw[->] (0,0) -- (0,6) node[above] {Koha};
+    
+    % Grid
+    \foreach \y in {1,2,3,4,5}
+        \draw[dashed, gray!30] (0,\y) -- (10,\y);
+    
+    % Traditional (exponential)
+    \draw[thick, color=aired, line width=2pt] 
+        (1,0.1) -- (2,0.15) -- (3,0.3) -- (4,0.5) -- (5,1) -- (6,2) -- (7,3.5) -- (8,5);
+    \node[color=aired] at (7,4.5) {\textbf{Tradicional}};
+    
+    % Our AI (nearly flat)
+    \draw[thick, color=aigreen, line width=2pt] 
+        (1,0.05) -- (2,0.06) -- (3,0.08) -- (4,0.1) -- (5,0.15) -- (6,0.2) -- (7,0.3) -- (8,0.4) -- (9,0.5);
+    \node[color=aigreen] at (7,0.8) {\textbf{AI-ja Jonë}};
+    
+    % Labels
+    \foreach \x in {0,50,100,150,200}
+        \node at (\x/25,-.3) {\tiny \x};
+    
+    \foreach \y in {0,1,2,3,4,5}
+        \node at (-.3,\y) {\tiny \y};
+\end{tikzpicture}
+\end{center}
+
+\begin{center}
+\textcolor{aiblue}{\large \textbf{Probleme më të mëdha? AI-ja shkëlqen edhe më shumë!}}
+\end{center}
+\end{frame}
+
+% ============================================================================
+% SEKSIONI 5: BIZNESI - Mundësia e Tregut
+% ============================================================================
+
+\section{Mundësia e Biznesit}
+
+\begin{frame}{Mundësia e Tregut}
+\begin{columns}
+\column{0.5\textwidth}
+\textbf{Tregu i Synuar:}
+\begin{itemize}
+    \item Kompani logjistike
+    \item Platforma e-commerce
+    \item Firma prodhimi
+    \item Institucione financiare
+    \item Ofrues cloud
+\end{itemize}
+
+\vspace{0.3cm}
+\textbf{Avantazhi Ynë:}
+\begin{itemize}
+    \item \textcolor{aigreen}{99\% më lirë} se CPLEX
+    \item \textcolor{aigreen}{100x më shpejt} zgjidhje
+    \item \textcolor{aigreen}{E lehtë} për t'u integruar
+    \item \textcolor{aigreen}{Cloud-ready} API
+\end{itemize}
+
+\column{0.5\textwidth}
+\begin{center}
+\textbf{Strategjia e Çmimeve:}
+
+\vspace{0.3cm}
+\begin{tikzpicture}[scale=0.9]
+    % CPLEX
+    \draw[fill=aired!30] (0,0) rectangle (2,4);
+    \node[rotate=90] at (1,2) {\textbf{CPLEX}};
+    \node at (1,-0.5) {\small \$100k/vit};
+    
+    % Us
+    \draw[fill=aigreen!30] (3,0) rectangle (5,0.4);
+    \node at (4,0.2) {\small \textbf{Ne}};
+    \node at (4,-0.5) {\small \$1k/vit};
+    
+    % Arrow
+    \draw[->, thick, color=aigreen] (5.5,2) -- (5.5,0.2);
+    \node at (6.5,1) {\small 100x};
+    \node at (6.5,0.5) {\small më lirë!};
+\end{tikzpicture}
+\end{center}
+\end{columns}
+
+% \vspace{0.5cm}
+% \begin{block}{Propozimi i Vlerës}
+% \textbf{Cilësi e njëjtë, 100x shpejtësi, 1\% çmim = Përmbysje masive e tregut!}
+% \end{block}
+\end{frame}
+
+% \begin{frame}{Modeli i të Ardhurave \& Projeksionet}
+% \begin{columns}
+% \column{0.5\textwidth}
+% \textbf{Nivelet e Abonimit:}
+% \begin{itemize}
+%     \item \textbf{Starter:} \$99/muaj
+%     \begin{itemize}
+%         \item 10,000 zgjidhje/muaj
+%         \item Deri në 50 artikuj
+%     \end{itemize}
+%     \item \textbf{Professional:} \$499/muaj
+%     \begin{itemize}
+%         \item 100,000 zgjidhje/muaj
+%         \item Deri në 200 artikuj
+%     \end{itemize}
+%     \item \textbf{Enterprise:} \$2,999/muaj
+%     \begin{itemize}
+%         \item Zgjidhje të pakufizuara
+%         \item Integrim i personalizuar
+%         \item Mbështetje prioritare
+%     \end{itemize}
+% \end{itemize}
+
+% \column{0.5\textwidth}
+% \textbf{Projeksioni 5-Vjeçar:}
+% \begin{table}
+% \tiny
+% \begin{tabular}{|l|r|}
+% \hline
+% \textbf{Viti} & \textbf{Të Ardhurat} \\
+% \hline
+% Viti 1 & \$500K \\
+% Viti 2 & \$2M \\
+% Viti 3 & \$8M \\
+% Viti 4 & \$20M \\
+% Viti 5 & \$50M \\
+% \hline
+% \end{tabular}
+% \end{table}
+
+% \vspace{0.3cm}
+% \textbf{Rruga drejt \$50M ARR:}
+% \begin{itemize}
+%     \item 500 klientë enterprise
+%     \item 2,000 klientë profesional
+%     \item 5,000 klientë starter
+% \end{itemize}
+% \end{columns}
+
+% \vspace{0.3cm}
+% \begin{center}
+% \textcolor{aiblue}{\textbf{Vlerësim konservativ: 0.1\% kuotë tregu}}
+% \end{center}
+% \end{frame}
+
+% \begin{frame}{Pse Do të Fitojmë}
+% \begin{center}
+% \textbf{Avantazhet Tona Konkurruese:}
+% \end{center}
+
+% \vspace{0.5cm}
+
+% \begin{columns}
+% \column{0.5\textwidth}
+% \textbf{Teknologjia:}
+% \begin{itemize}
+%     \item \checkmark{} Qasje AI në pritje të patentës
+%     \item \checkmark{} Performancë e provuar
+%     \item \checkmark{} Mësim i vazhdueshëm
+%     \item \checkmark{} Arkitekturë cloud-native
+% \end{itemize}
+
+% \vspace{0.3cm}
+% \textbf{Pozicioni në Treg:}
+% \begin{itemize}
+%     \item \checkmark{} I pari në optimizim me AI
+%     \item \checkmark{} Çmim përmbysës
+%     \item \checkmark{} Adoptim i lehtë
+%     \item \checkmark{} Platformë e shkallëzueshme
+% \end{itemize}
+
+% \column{0.5\textwidth}
+% \textbf{Ekipi:}
+% \begin{itemize}
+%     \item \checkmark{} Ekspertizë AI/ML
+%     \item \checkmark{} Njohuri kërkimi operacional
+%     \item \checkmark{} Përsosmëri në inxhinieri software
+%     \item \checkmark{} Lidhje në industri
+% \end{itemize}
+
+% \vspace{0.3cm}
+% \textbf{Vizioni:}
+% \begin{itemize}
+%     \item Fillo me çantën
+%     \item Zgjero në të gjithë optimizimin
+%     \item Ndërto "platformën zgjidhëse AI"
+%     \item Demokratizo optimizimin
+% \end{itemize}
+% \end{columns}
+
+% \vspace{0.5cm}
+% \begin{center}
+% \large \textcolor{aigreen}{\textbf{Duke e bërë optimizimin të aksesueshëm për të gjithë!}}
+% \end{center}
+% \end{frame}
+
+% ============================================================================
+% SEKSIONI 6: DEMO-JA
+% ============================================================================
+
+\section{Demo e Drejtpërdrejtë}
+
+\begin{frame}{Le ta Shohim në Veprim!}
+\begin{center}
+\LARGE \textbf{DEMO E DREJTPËRDREJTË}
+
+\vspace{1cm}
+
+\large \textcolor{aiblue}{http://localhost:5000}
+
+\vspace{1cm}
+
+\normalsize
+\textbf{Shihni teksa ne:}
+\begin{itemize}
+    \item Gjenerojmë një problem të rastësishëm
+    \item E zgjidhim me AI-në tonë (milisekonda!)
+    \item Krahasojmë me metodën tradicionale
+    \item Shohim hendekun $<1\%$ në cilësi
+    \item Vëzhgojmë shpejtësinë 10-100x
+\end{itemize}
+
+\vspace{0.5cm}
+\textit{Ky është modeli aktual i trajnuar i AI-së, duke punuar live!}
+\end{center}
+\end{frame}
+
+% \begin{frame}{Thekset e Demo-s}
+% \begin{center}
+% \textbf{Çfarë sapo patë:}
+% \end{center}
+
+% \vspace{0.3cm}
+
+% \begin{columns}
+% \column{0.5\textwidth}
+% \textbf{Shpejtësia:}
+% \begin{itemize}
+%     \item AI: 20 milisekonda
+%     \item Tradicional: 2 sekonda
+%     \item \textcolor{aigreen}{\textbf{100x më shpejt!}}
+% \end{itemize}
+
+% \vspace{0.3cm}
+% \textbf{Cilësia:}
+% \begin{itemize}
+%     \item Hendeku: 0.5\%
+%     \item E mundshme: Po \checkmark{}
+%     \item \textcolor{aigreen}{\textbf{Gati për prodhim!}}
+% \end{itemize}
+
+% \column{0.5\textwidth}
+% \textbf{Përvoja e Përdoruesit:}
+% \begin{itemize}
+%     \item Ndërfaqe web e thjeshtë
+%     \item Rezultate të menjëhershme
+%     \item Reagim vizual
+%     \item E lehtë për t'u kuptuar
+% \end{itemize}
+
+% \vspace{0.3cm}
+% \textbf{Integrimi:}
+% \begin{itemize}
+%     \item REST API gati
+%     \item Format JSON
+%     \item E vendosshme në cloud
+%     \item E shkallëzueshme
+% \end{itemize}
+% \end{columns}
+
+% \vspace{0.5cm}
+% \begin{center}
+% \textcolor{aiblue}{\Large \textbf{Ky është vetëm fillimi!}}
+% \end{center}
+% \end{frame}
+
+% ============================================================================
+% SEKSIONI 7: VIZIONI
+% ============================================================================
+
+\section{Vizioni}
+
+\begin{frame}{Përtej Çantës: Vizioni i Plotë}
+\begin{center}
+\textbf{Sot:} Zgjidhës i Problemit të Çantës
+\end{center}
+
+\vspace{0.3cm}
+
+\begin{tikzpicture}[scale=0.9]
+    % Phase 1 - Today
+    \node[draw, fill=aigreen!30, minimum width=3cm, minimum height=1.5cm] at (0,3) (p1) {
+        \begin{tabular}{c}
+        \textbf{Faza 1} \\
+        \textbf{(Sot)} \\
+        Zgjidhës Çantash
+        \end{tabular}
+    };
+    
+    % Phase 2 - 6 months
+    \node[draw, fill=aiblue!20, minimum width=3cm, minimum height=1.5cm] at (4,3) (p2) {
+        \begin{tabular}{c}
+        \textbf{Faza 2} \\
+        \textbf{(6 muaj)} \\
+        5 Tipe Problemesh
+        \end{tabular}
+    };
+    
+    % Phase 3 - 12 months
+    \node[draw, fill=aiblue!20, minimum width=3cm, minimum height=1.5cm] at (8,3) (p3) {
+        \begin{tabular}{c}
+        \textbf{Faza 3} \\
+        \textbf{(12 muaj)} \\
+        Zgjidhës i Përgjithshëm
+        \end{tabular}
+    };
+    
+    % Phase 4 - 24 months
+    \node[draw, fill=aiblue!20, minimum width=3cm, minimum height=1.5cm] at (12,3) (p4) {
+        \begin{tabular}{c}
+        \textbf{Faza 4} \\
+        \textbf{(24 muaj)} \\
+        Platformë AI
+        \end{tabular}
+    };
+    
+    % Arrows
+    \draw[->, thick] (p1) -- (p2);
+    \draw[->, thick] (p2) -- (p3);
+    \draw[->, thick] (p3) -- (p4);
+    
+    % Details below
+    \node[text width=3cm, align=center] at (0,1) {\tiny Paketim, ngarkim, portofol};
+    \node[text width=3cm, align=center] at (4,1) {\tiny + Planifikim, rrugëtim, caktim};
+    \node[text width=3cm, align=center] at (8,1) {\tiny Çdo problem optimizimi};
+    \node[text width=3cm, align=center] at (12,1) {\tiny Suitë e plotë zgjidhëse AI};
+\end{tikzpicture}
+
+\vspace{0.5cm}
+\begin{center}
+\large \textcolor{aiblue}{\textbf{Misioni: Demokratizimi i optimizimit përmes AI-së}}
+\end{center}
+\end{frame}
+
+\begin{frame}{Strategjia e Zgjerimit të Tregut}
+\begin{columns}
+\column{0.5\textwidth}
+\textbf{Problemet e Fazës 2:}
+\begin{enumerate}
+    \item Çanta (\checkmark{} bërë!)
+    \item Rrugëtimi i automjeteve
+    \item Planifikimi i punëve
+    \item Paketimi në kuti
+    \item Optimizimi i portofolit
+\end{enumerate}
+
+\vspace{0.3cm}
+\textbf{Zgjerimi i Fazës 3:}
+\begin{itemize}
+    \item Optimizim zinxhiri furnizimi
+    \item Dizajn rrjeti
+    \item Alokimi i burimeve
+    \item Vendndodhja e objekteve
+\end{itemize}
+
+\column{0.5\textwidth}
+\textbf{Platforma e Fazës 4:}
+\begin{itemize}
+    \item Ndërtues problemesh të personalizuar
+    \item Auto-ML për probleme të reja
+    \item Treg integrimi
+    \item Zgjidhje white-label
+\end{itemize}
+
+\vspace{0.3cm}
+\begin{center}
+\begin{tikzpicture}[scale=0.8]
+    \draw[fill=aiblue!20] (0,0) rectangle (4,3);
+    \node at (2,2.5) {\textbf{OptimizOR.ai}};
+    \node at (2,2) {\textbf{Platformë}};
+    \node at (2,1.2) {\small Të gjithë optimizimet};
+    \node at (2,0.8) {\small problemet};
+    \node at (2,0.3) {\small në një vend};
+\end{tikzpicture}
+\end{center}
+\end{columns}
+\end{frame}
+
+% ============================================================================
+% SEKSIONI 8: KËRKESA
+% ============================================================================
+
+% \section{Thirrje për Veprim}
+
+% \begin{frame}{Çfarë Na Duhet}
+% \begin{center}
+% \textbf{Kërkesat e Financimit: Raundi Fillestar}
+% \end{center}
+
+% \vspace{0.3cm}
+
+% \begin{columns}
+% \column{0.5\textwidth}
+% \textbf{Duke Mbledhur: \$2M}
+
+% \vspace{0.3cm}
+% \textbf{Përdorimi i Fondeve:}
+% \begin{itemize}
+%     \item 40\% Inxhinieri (4 inxhinierë AI)
+%     \item 25\% Shitje \& Marketing
+%     \item 20\% Infrastrukturë cloud
+%     \item 15\% Operacione \& ligjore
+% \end{itemize}
+
+% \vspace{0.3cm}
+% \textbf{Kohëzgjatja: 18 muaj}
+
+% \column{0.5\textwidth}
+% \textbf{Treguesi Kryesorë:}
+% \begin{itemize}
+%     \item \checkmark{} Faza 1: Çanta (bërë!)
+%     \item Muaji 6: 5 tipe problemesh
+%     \item Muaji 12: 100 klientë pagues
+%     \item Muaji 18: \$1M ARR, gati për Serinë A
+% \end{itemize}
+
+% \vspace{0.3cm}
+% \textbf{Nevojat e Ekipit:}
+% \begin{itemize}
+%     \item Inxhinier i lartë ML
+%     \item Zhvillues full-stack
+%     \item Përgjegjës shitjesh
+%     \item Specialist marketingu
+% \end{itemize}
+% \end{columns}
+
+% \vspace{0.5cm}
+% \begin{center}
+% \textcolor{aiblue}{\large \textbf{Bashkohuni me ne në revolucionimin e optimizimit!}}
+% \end{center}
+% \end{frame}
+
+% \begin{frame}{Pse të Investoni Tani?}
+% \begin{columns}
+% \column{0.5\textwidth}
+% \textbf{Koha e Tregut:}
+% \begin{itemize}
+%     \item Përshtatja e AI po përshpejtohet
+%     \item Pjekuria e cloud computing
+%     \item Presion kosti mbi ndërmarrjet
+%     \item Kërkesë për zgjidhje të shpejta
+% \end{itemize}
+
+% \vspace{0.3cm}
+% \textbf{Provë Teknike:}
+% \begin{itemize}
+%     \item Produkt funksional (sapo e patë!)
+%     \item Qasje e validuar
+%     \item Arkitekturë e shkallëzueshme
+%     \item Potencial i fortë IP
+% \end{itemize}
+
+% \column{0.5\textwidth}
+% \textbf{Mundësia e Tregut:}
+% \begin{itemize}
+%     \item Treg \$2B+ (rritje 15\%/vit)
+%     \item Segment SMB i pambështetur
+%     \item Mundësi përmbysëse
+%     \item Potencial platforme
+% \end{itemize}
+
+% \vspace{0.3cm}
+% \textbf{Zbutja e Riskut:}
+% \begin{itemize}
+%     \item Teknologji e provuar
+%     \item Strategji e qartë hyrjeje në treg
+%     \item Ekip me përvojë
+%     \item Rrjedha të shumta të ardhurash
+% \end{itemize}
+% \end{columns}
+
+% % \vspace{0.5cm}
+% \begin{alertblock}{Mundësia e Investimit}
+% \textbf{Fazë e hershme, teknologji e provuar, treg i madh = Potencial kthimi i lartë!}
+% \end{alertblock}
+% \end{frame}
+
+% ============================================================================
+% SLAJDI FINAL
+% ============================================================================
+
+\begin{frame}{Faleminderit!}
+\begin{center}
+\LARGE \textbf{OptimizOR.ai}
+
+\large Optimizim i Fuqizuar nga AI për Të Gjithë
+
+\vspace{1cm}
+
+% \normalsize
+% \textbf{Kontakt:}
+
+% \vspace{0.3cm}
+% Email: contact@optimizor.ai\\
+% Web: www.optimizor.ai\\
+% Demo: http://localhost:5000
+
+\vspace{1cm}
+
+\Large \textcolor{aiblue}{\textbf{Le ta optimizojmë botën së bashku!}}
+
+\vspace{0.5cm}
+
+\normalsize
+\textit{Pyetje?}
+\end{center}
+\end{frame}
+
+% Slajde Rezervë
+\appendix
+
+% \begin{frame}{Rezervë: Arkitektura Teknike}
+% \begin{center}
+% \textbf{Përmbledhje e Arkitekturës së Sistemit}
+% \end{center}
+
+% \begin{tikzpicture}[scale=0.8]
+%     % Frontend
+%     \node[draw, fill=aiblue!20, minimum width=3cm, minimum height=1cm] at (0,4) {Web UI};
+    
+%     % API Layer
+%     \node[draw, fill=aigreen!20, minimum width=3cm, minimum height=1cm] at (0,2.5) {REST API};
+    
+%     % AI Engine
+%     \node[draw, fill=aiorange!20, minimum width=3cm, minimum height=1cm] at (0,1) {AI Engine};
+    
+%     % Model
+%     \node[draw, fill=yellow!20, minimum width=3cm, minimum height=1cm] at (0,-0.5) {Modeli i Trajnuar};
+    
+%     % Arrows
+%     \draw[<->, thick] (0,3.5) -- (0,3);
+%     \draw[<->, thick] (0,2) -- (0,1.5);
+%     \draw[<->, thick] (0,0.5) -- (0,0);
+    
+%     % Details
+%     \node[text width=4cm, align=left] at (4,4) {\tiny HTML/CSS/JS, Dizajn modern responsiv};
+%     \node[text width=4cm, align=left] at (4,2.5) {\tiny Flask/Python, Endpoint JSON};
+%     \node[text width=4cm, align=left] at (4,1) {\tiny PyTorch, Arkitekturë DeepSets};
+%     \node[text width=4cm, align=left] at (4,-0.5) {\tiny 50k parametra, madhësi <1MB};
+% \end{tikzpicture}
+% \end{frame}
+
+% % \begin{frame}{Rezervë: Detajet e Trajnimit}
+% \textbf{Specifikimet e Trajnimit të Modelit:}
+
+% \begin{itemize}
+%     \item \textbf{Arkitektura:} DeepSets (invariant ndaj permutimit)
+%     \item \textbf{Dimensioni i Fshehur:} 128
+%     \item \textbf{Parametra:} 50,561
+%     \item \textbf{Shembuj Trajnimi:} 100,000+ raste
+%     \item \textbf{Madhësitë e Problemeve:} $N \in [10, 60]$ me mësim kurikular
+%     \item \textbf{Variacion Kapaciteti:} 30\%-70\% e peshës totale
+%     \item \textbf{Funksioni i Humbjes:} BCE + Humbje keqardhje
+%     \item \textbf{Kohë Trajnimi:} 15 minuta në CPU
+%     \item \textbf{Performanca:} 0.5\% hendek mesatar, 100\% mundësi
+% \end{itemize}
+
+% \vspace{0.3cm}
+% \textbf{Inovacioni Kryesor:} Trajnimi me N-variabil me mësim kurikular mundëson përgjithësim në madhësi problemesh të pavëzhguara (testuar deri në N=200).
+% % \end{frame}
+
+\end{document}
