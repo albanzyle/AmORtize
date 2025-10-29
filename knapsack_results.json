@@ -1,0 +1,137 @@
+{
+  "training_config": {
+    "n_range": [
+      10,
+      60
+    ],
+    "capacity_range": [
+      0.3,
+      0.7
+    ],
+    "curriculum": true
+  },
+  "evaluation_results": {
+    "n10": {
+      "tight": {
+        "avg_gap": 1.7837809646657972,
+        "median_gap": 0.0,
+        "feasibility": 1.0,
+        "time_ms": 3.037443161010742
+      },
+      "balanced": {
+        "avg_gap": 0.6257067157664504,
+        "median_gap": 0.0,
+        "feasibility": 1.0,
+        "time_ms": 3.574695587158203
+      },
+      "loose": {
+        "avg_gap": 0.8159919645592271,
+        "median_gap": 0.0,
+        "feasibility": 1.0,
+        "time_ms": 4.609823226928711
+      }
+    },
+    "n20": {
+      "tight": {
+        "avg_gap": 0.45993512084660615,
+        "median_gap": 0.0,
+        "feasibility": 1.0,
+        "time_ms": 8.327727317810059
+      },
+      "balanced": {
+        "avg_gap": 0.7968255173788799,
+        "median_gap": 0.2929883978271075,
+        "feasibility": 1.0,
+        "time_ms": 12.01728343963623
+      },
+      "loose": {
+        "avg_gap": 0.9020819535587882,
+        "median_gap": 0.170261066969353,
+        "feasibility": 1.0,
+        "time_ms": 15.42142391204834
+      }
+    },
+    "n30": {
+      "tight": {
+        "avg_gap": 0.6577432909532165,
+        "median_gap": 0.11001100110011,
+        "feasibility": 1.0,
+        "time_ms": 17.54929542541504
+      },
+      "balanced": {
+        "avg_gap": 0.5511849690160374,
+        "median_gap": 0.0,
+        "feasibility": 1.0,
+        "time_ms": 25.105814933776855
+      },
+      "loose": {
+        "avg_gap": 0.7682996669457952,
+        "median_gap": 0.3176481029867696,
+        "feasibility": 1.0,
+        "time_ms": 32.17483043670654
+      }
+    },
+    "n40": {
+      "tight": {
+        "avg_gap": 0.5660638044766949,
+        "median_gap": 0.24570987542660058,
+        "feasibility": 1.0,
+        "time_ms": 31.304059028625485
+      },
+      "balanced": {
+        "avg_gap": 0.5587276786976143,
+        "median_gap": 0.3807365658093249,
+        "feasibility": 1.0,
+        "time_ms": 43.67198944091797
+      },
+      "loose": {
+        "avg_gap": 0.7297561628070922,
+        "median_gap": 0.6573551795147283,
+        "feasibility": 1.0,
+        "time_ms": 56.62391185760498
+      }
+    },
+    "n50": {
+      "tight": {
+        "avg_gap": 0.7246866957648376,
+        "median_gap": 0.41868996488339827,
+        "feasibility": 1.0,
+        "time_ms": 47.32080936431885
+      },
+      "balanced": {
+        "avg_gap": 0.21945695049949862,
+        "median_gap": 0.024189646831156264,
+        "feasibility": 1.0,
+        "time_ms": 66.95734024047852
+      },
+      "loose": {
+        "avg_gap": 0.7302070841793316,
+        "median_gap": 0.6593132760476967,
+        "feasibility": 1.0,
+        "time_ms": 87.19268798828125
+      }
+    },
+    "n60": {
+      "tight": {
+        "avg_gap": 0.5265407136325945,
+        "median_gap": 0.48969319271332695,
+        "feasibility": 1.0,
+        "time_ms": 68.40898513793945
+      },
+      "balanced": {
+        "avg_gap": 0.2682904832290779,
+        "median_gap": 0.1376318794634487,
+        "feasibility": 1.0,
+        "time_ms": 98.3956527709961
+      },
+      "loose": {
+        "avg_gap": 0.7478301288077509,
+        "median_gap": 0.6768756534955018,
+        "feasibility": 1.0,
+        "time_ms": 126.29874706268309
+      }
+    }
+  },
+  "config_file": "knapsack_config_variable.json",
+  "model_file": "knapsack_model_variable.pt"
+}
