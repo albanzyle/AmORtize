@@ -351,8 +351,8 @@
                 <h2>📦 Problem Setup</h2>
                 
                 <div class="form-group">
-                    <label for="numItems">Number of Items (5-200):</label>
-                    <input type="number" id="numItems" value="30" min="5" max="200">
+                    <label for="numItems">Number of Items (5-20000):</label>
+                    <input type="number" id="numItems" value="30" min="5" max="20000">
                 </div>
 
                 <div class="form-row">
@@ -521,8 +521,8 @@
             const seed = seedInput ? parseInt(seedInput) : Math.floor(Math.random() * 100000);
 
             // Validation
-            if (isNaN(numItems) || numItems < 5 || numItems > 200) {
-                alert('Please enter a valid number of items (5-200)');
+            if (isNaN(numItems) || numItems < 5 || numItems > 20000) {
+                alert('Please enter a valid number of items (5-20000)');
                 return;
             }
 

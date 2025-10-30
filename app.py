@@ -89,8 +89,8 @@ def generate_problem():
             seed = None
         
         # Validate inputs
-        if n_items < 5 or n_items > 200:
-            return jsonify({"error": "Number of items must be between 5 and 200"}), 400
+        if n_items < 5 or n_items > 20000:
+            return jsonify({"error": "Number of items must be between 5 and 20000"}), 400
         
         if capacity_ratio < 0.1 or capacity_ratio > 0.9:
             return jsonify({"error": "Capacity ratio must be between 0.1 and 0.9"}), 400
